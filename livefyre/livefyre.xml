@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="content">
+	<name>Livefyre Comments</name>
+	<author>Livefyre</author>
+	<creationDate>2/ 2012</creationDate>
+	<copyright>Copyright 2012 Livefyre</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>ben@livefyre.com</authorEmail>
+	<authorUrl>livefyre.com</authorUrl>
+	<version>3.0</version>
+		<files>
+		<filename plugin="livefyre">livefyre.php</filename>
+		<folder>livefyre</folder>
+	</files>
+	<config >
+		<fields name="params" >
+		<fieldset name="basic" >
+				<field name="blogid" id="blogid" type="text" default="" label="Livefyre Site Id:" description="ID for the site that this is being installed on." />
+				<field name="apisecret" id="apisecret" type="text" default="" label="Livefyre Site API Secret:" description="" />
+				<field name="domain" id="domain" type="text" default="" label="Livefyre Domain:" description="Domain of the network (e.g. example.fyre.co)." />
+				<field name="@spacer" type="spacer" default="" label="------------------------------------------------------------------------------------" description="" />
+				<field addfieldpath="/plugins/content/livefyre/livefyre/includes/elements"
+					name="selectedCategories"
+					type="category"
+					extension="com_content"
+					multiple="true"	
+					size="12"
+					default="0"
+					label="Select categories to render the plugin"
+					description="Select categories to render the plugin" >
+					<option value="">Select</option>
+					
+				</field>
+		</fieldset>
+	</fields>
+	</config>
+</extension>
