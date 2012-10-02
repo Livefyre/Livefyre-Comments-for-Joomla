@@ -1,7 +1,7 @@
 <?php
 
 define('LFTOKEN_MAX_AGE', 86400);
-include('JWT.php');
+include_once('JWT.php');
 
 class Livefyre_Token {
     static function from_user($user, $max_age=LFTOKEN_MAX_AGE) {
@@ -15,7 +15,7 @@ class Livefyre_Token {
         if (!empty($dname)) {
             $args['display_name'] = $dname;
         }
-        return JWT::encode($args, $secret);
+        return LF_JWT::encode($args, $secret);
     }
 }
 
@@ -74,7 +74,7 @@ function lftokenCreateToken($data, $key) {
 
 function lftokenValidateSystemToken($token, $key, $domain) {
     // This replaces the below - it uses JWT to verify that the token is valid for user id = 'system'
-    $payload = JWT::decode($token, $key);
+    $payload = LF_JWT::decode($token, $key);
     $required = array('expires','user_id','domain');
     foreach ($required as $field_name) {
         if ( !isset($payload->$field_name) ) {

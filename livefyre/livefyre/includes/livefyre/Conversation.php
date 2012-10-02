@@ -94,7 +94,7 @@ class Livefyre_Conversation {
         $checksum = md5(json_encode($collectionMeta));
         $collectionMeta["checksum"] = $checksum;
         $collectionMeta["articleId"] = $article->get_id();
-        $jwtString = JWT::encode($collectionMeta, $site->get_key());
+        $jwtString = LF_JWT::encode($collectionMeta, $site->get_key());
         return array('collectionMeta' => $jwtString, 'checksum' => $checksum);
     }
     
