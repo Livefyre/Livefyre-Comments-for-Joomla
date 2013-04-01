@@ -12,9 +12,6 @@
 		<filename plugin="livefyre">livefyre.php</filename>
 		<folder>livefyre</folder>
 	</files>
-	<params>
-		<param name="selectedCategories" type="categories" default="" label="wtf" description="" />
-	</params>
 	<config >
 		<fields name="params">
 			<fieldset name="basic">
