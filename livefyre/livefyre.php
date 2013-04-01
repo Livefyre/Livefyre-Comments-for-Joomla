@@ -15,7 +15,7 @@ jimport('joomla.html.parameter');
 require_once(JPATH_SITE.'/components/com_content/helpers/route.php');
 class plgContentlivefyre extends JPlugin {
 
-	function plgContentlivefyre( &$subject, $params ){
+	function plgContentlivefyre( &$subject, $params ) {
 		parent::__construct( $subject, $params );
 	}
 
@@ -107,9 +107,11 @@ class plgContentlivefyre extends JPlugin {
 	
 		if (is_null($row->catslug && $view == 'article')) {
 			$currectCategory = 0;
-		} else if ($view == 'category' &&  $layout == 'blog') {
+		}
+		else if ($view == 'category' &&  $layout == 'blog') {
 			$currectCategory=$_REQUEST['id'];
-		} else if (($_REQUEST['view'] == 'featured') && ($_REQUEST['option'] == 'com_content')) {
+		}
+		else if (($_REQUEST['view'] == 'featured') && ($_REQUEST['option'] == 'com_content')) {
 			if (is_string($row->text) && $row->text != '') {
 				// setQuery might be deprecated in 3.0
 				// $query = "SELECT * FROM `#__content` where featured='1' and introtext='".$row->text."'";
@@ -133,7 +135,8 @@ class plgContentlivefyre extends JPlugin {
 				$data = $db->loadObject();
 				$currentCategory = $data->catid;
 			}
-		} else {
+		}
+		else {
 			$currectCategory = explode(":",$row->catslug);
 			$currectCategory = $currectCategory[0];	
 		}
@@ -141,9 +144,11 @@ class plgContentlivefyre extends JPlugin {
 		// Define plugin category restrictions
 		if (is_array($selectedCategories)) {
 			$categories = $selectedCategories;
-		} elseif ($selectedCategories== '') {
+		}
+		else if ($selectedCategories == '') {
 			$categories[] = $currectCategory;
-		} else {
+		}
+		else {
 			$categories[] = $selectedCategories;
 		}
 			
@@ -168,7 +173,8 @@ class plgContentlivefyre extends JPlugin {
 		
 		if ($row->access <= $aid) {
 			$itemURL = JRoute::_(ContentHelperRoute::getArticleRoute($row->slug, $row->catslug, $row->sectionid));
-		} else {
+		}
+		else {
 			$itemURL = JRoute::_("index.php?option=com_user&task=register");
 		}
 		
@@ -208,7 +214,8 @@ class plgContentlivefyre extends JPlugin {
 				// Output
 				$row->text = $getArticleTemplate;
 				
-			} else if ($option == 'com_content' && ($view == 'featured'  || $view == 'category')) {
+			}
+			else if ($option == 'com_content' && ($view == 'featured'  || $view == 'category')) {
 				
 				// Fetch the template
 				ob_start();

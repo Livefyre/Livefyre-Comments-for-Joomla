@@ -16,7 +16,8 @@ echo $row->text;
 if (!isset($plugin) || !isset($blogid)) {
 	if ( version_compare( JVERSION, '3.0', '>=' ) == 1) {
 		$blogid = $this->params->get('blogid');
-	} else {
+	} 
+	else {
 		$plugin =& JPluginHelper::getPlugin('content', $plg_name);
 		$pluginParams = new JParameter( $plugin->params );
 		$blogid = $pluginParams->get( 'blogid' );
@@ -42,7 +43,7 @@ if (typeof(document.getElementById('ncomments_js')) == 'undefined' || document.g
 
 <?php 
 
-if($view=='category' &&  $layout=='blog') {
+if($view == 'category' &&  $layout == 'blog') {
 	$query = $db->getQuery(true);
 	$query->select("*");
 	$query->from("#__content");
@@ -65,7 +66,8 @@ if($view=='category' &&  $layout=='blog') {
 <a class="livefyre-ncomments" style="display:block; float:right;" href="<?php echo $itemURL; ?>#livefyre_thread" article_id="<?php echo $data->id; ?>" title="<?php echo JText::_('no comments'); ?>"><?php echo JText::_('no comments'); ?></a>
 
 <?php
-} else if($_REQUEST['view'] == 'featured') {
+}
+else if($_REQUEST['view'] == 'featured') {
 	// everything approved
 	$query = $db->getQuery(true);
 	$query->select("*");
