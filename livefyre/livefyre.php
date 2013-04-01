@@ -5,8 +5,8 @@
 * by Purple Cow Websites
 * @copyright Copyright (C) 2010 * Livefyre All rights reserved.
 */
-
 // no direct access
+
 defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.plugin.plugin');
