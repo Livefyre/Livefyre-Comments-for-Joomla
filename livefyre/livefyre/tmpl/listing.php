@@ -22,9 +22,6 @@ if (!isset($plugin) || !isset($blogid)) {
 		$pluginParams = new JParameter( $plugin->params );
 		$blogid = $pluginParams->get( 'blogid' );
 	}
-	// $plugin =& JPluginHelper::getPlugin('content', $plg_name);
-	// $pluginParams = new JParameter( $plugin->params );
-	// $blogid = $pluginParams->get( 'blogid' );
 }
 
 // Set up a debug log if available
