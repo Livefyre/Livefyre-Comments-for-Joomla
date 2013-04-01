@@ -8,30 +8,33 @@
 	<authorEmail>ben@livefyre.com</authorEmail>
 	<authorUrl>livefyre.com</authorUrl>
 	<version>3.0</version>
-		<files>
+	<files>
 		<filename plugin="livefyre">livefyre.php</filename>
 		<folder>livefyre</folder>
 	</files>
+	<params>
+		<param name="selectedCategories" type="categories" default="" label="wtf" description="" />
+	</params>
 	<config >
-		<fields name="params" >
-		<fieldset name="basic" >
-				<field name="blogid" id="blogid" type="text" default="" label="Livefyre Site Id:" description="ID for the site that this is being installed on." />
-				<field name="apisecret" id="apisecret" type="text" default="" label="Livefyre Site API Secret:" description="" />
-				<field name="domain" id="domain" type="text" default="" label="Livefyre Domain:" description="Domain of the network (e.g. example.fyre.co)." />
-				<field name="@spacer" type="spacer" default="" label="------------------------------------------------------------------------------------" description="" />
-				<field addfieldpath="/plugins/content/livefyre/livefyre/includes/elements"
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="lf_beta" type="spacer" label='&lt;strong&gt;Livefyre Comments for Joomla (Beta)&lt;/strong&gt;' />
+				<field name="lf_link" type="spacer" label='If your blog has not been registered, please head &lt;a href="http://www.livefyre.com/install/"&gt;here&lt;/a&gt; to receive your Site ID and Key.' />
+				<field name="@spacer" type="spacer" default="" label="" description="" />
+				<field name="blogid" id="blogid" type="text" default="" label="Livefyre Site Id:" description="ID for the site that this is being installed on." required="true" />
+				<field name="apisecret" id="apisecret" type="text" default="" label="Livefyre Site API Secret:" description="" required="true" />
+				<field name="domain" id="domain" type="text" default="livefyre.com" label="Livefyre Domain:" description="Domain of the network (e.g. example.fyre.co)." required="true" />
+				<field name="@spacer" type="spacer" default="" label="" description="" />
+				<field
 					name="selectedCategories"
 					type="category"
 					extension="com_content"
-					multiple="true"	
-					size="12"
-					default="0"
-					label="Select categories to render the plugin"
+					multiple="true"
+					label="Select categories to render the plugin:"
 					description="Select categories to render the plugin" >
 					<option value="">Select</option>
-					
 				</field>
-		</fieldset>
-	</fields>
+			</fieldset>
+		</fields>
 	</config>
 </extension>
