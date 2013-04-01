@@ -1,4 +1,10 @@
 <?php
+/*
+* overlay   plugin 3.1
+* Joomla plugin
+* by Purple Cow Websites
+* @copyright Copyright (C) 2010 * Livefyre All rights reserved.
+*/
 
 class Logger {
     
