@@ -1,14 +1,12 @@
 <?php 
 /*
-* "livefyre Comment System" Plugin for Joomla! 1.5.x - Version 2.2
-* Copyright (c) 2006 - 2009   Ltd. All rights reserved.
-* Released under the GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
-* More info at http://www. .gr
-* Designed and developed by the  team
-* Last update: November 14th, 2009***
+* overlay   plugin 3.1
+* Joomla plugin
+* by Purple Cow Websites
+* @copyright Copyright (C) 2010 * Livefyre All rights reserved.
 */
-
 // no direct access
+
 defined('_JEXEC') or die('Restricted access');
 
 echo $row->text;
