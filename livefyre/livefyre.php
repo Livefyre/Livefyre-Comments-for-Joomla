@@ -24,6 +24,9 @@ class plgContentlivefyre extends JPlugin {
 
 		// Check versions for logging and backward compatibility
 		$joomla_v3 = false;
+		if (version_compare( JVERSION, '3.0', '>=') == 1) {
+      		$joomla_v3 = true;
+    	}
 		
 		$livefyre_logger = LivefyreLogger::getInstance();
 		$livefyre_logger->add('Livefyre: On Joomla '.JVERSION.'.');
