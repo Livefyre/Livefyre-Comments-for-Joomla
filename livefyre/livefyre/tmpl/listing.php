@@ -9,6 +9,9 @@
 
 defined('_JEXEC') or die('Restricted access');
 
+require_once(JPATH_SITE.'/plugins/content/livefyre/livefyre/includes/logger.php');
+$livefyre_logger = LivefyreLogger::getInstance();
+
 echo $row->text;
 
 if (!isset($plugin) || !isset($blogid)) {
@@ -20,13 +23,6 @@ if (!isset($plugin) || !isset($blogid)) {
 		$pluginParams = new JParameter( $plugin->params );
 		$blogid = $pluginParams->get( 'blogid' );
 	}
-}
-
-// Set up a debug log if available
-if (version_compare( JVERSION, '1.7', '>=') == 1 && JDEBUG) {
-	jimport('joomla.log.log');
-	JLog::addLogger(array());
-	$use_log = true;
 }
 ?>
 
@@ -86,9 +82,6 @@ else if($_REQUEST['view'] == 'featured') {
 	}
 }
 
-// For debugging purposes
-if ($use_log) {
-    JLog::add('Livefyre: Comment Count on article: Id: ' .$data->id, JLog::DEBUG, 'Livefyre');
-}
+$livefyre_logger->add('Livefyre: Comment Count on article: Id: ' .$data->id, JLog::DEBUG, 'Livefyre');
 
 ?>

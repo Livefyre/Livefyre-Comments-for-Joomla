@@ -6,23 +6,36 @@
 * @copyright Copyright (C) 2010 * Livefyre All rights reserved.
 */
 
-class Logger {
+class LivefyreLogger {
     
-    function __construct() {
+    private static $instance;
+    private static $log_flag;
+
+    private function __construct() {
+
         if (version_compare( JVERSION, '1.7', '>=' ) == 1) {
             jimport('joomla.log.log');
             // Initialise a basic logger with no options (once only).
             JLog::addLogger(array());
-            JLog::add("Creating a logger", JLog::DEBUG, 'Livefyre');
-            $use_log = true;
+            JLog::add("Creating a logger");
+            self::$log_flag = true;
         }
     }
 
-    function add($message) {
-        if (JDEBUG !== true || !$this->$use_log) {
-            return;
+    public static function getInstance() {
+
+        if (!self::$instance) {
+            self::$instance = new LivefyreLogger();
         }
-        JLog::add($message, JLog::DEBUG, 'Livefyre');
+
+        return self::$instance;
+    }
+
+    function add($message) {
+
+        if (JDEBUG && self::$log_flag) {
+            JLog::add($message, JLog::DEBUG, 'Livefyre');
+        }
     }
 }
 

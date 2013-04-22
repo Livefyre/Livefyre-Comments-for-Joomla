@@ -9,8 +9,8 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-// Include the JLog class.
-jimport('joomla.log.log');
+require_once(JPATH_SITE.'/plugins/content/livefyre/livefyre/includes/logger.php');
+$livefyre_logger = LivefyreLogger::getInstance();
 
 echo $row->text;
 ?>
@@ -51,13 +51,7 @@ if (class_exists('LF_JWT') != true) {
     include(dirname(__FILE__).'/../includes/livefyre/JWT.php');
 }
 
-// Add debug statement if available
-if (version_compare( JVERSION, '1.7', '>=') == 1 && JDEBUG) {
-    jimport('joomla.log.log');
-    JLog::addLogger(array());
-    JLog::add('Livefyre: Outputing on article: Id: ' .$articleId. ' Title: ' .$articleTitle. ' URL: ' .$article_url, JLog::DEBUG, 'Livefyre');
-    $use_log = true;
-}
+$livefyre_logger->add('Livefyre: Outputing on article: Id: ' .$articleId. ' Title: ' .$articleTitle. ' URL: ' .$article_url, JLog::DEBUG, 'Livefyre');
 
 // Create collectionMeta
 $meta = array(
