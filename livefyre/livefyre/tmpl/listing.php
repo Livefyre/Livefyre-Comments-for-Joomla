@@ -1,11 +1,10 @@
 <?php 
 /*
-* overlay   plugin 3.1
-* Joomla plugin
-* by Purple Cow Websites
+* Joomla Plugin
+* Plugin Version: 1.0
+* by Livefyre Inc
 * @copyright Copyright (C) 2010 * Livefyre All rights reserved.
 */
-// no direct access
 
 defined('_JEXEC') or die('Restricted access');
 
