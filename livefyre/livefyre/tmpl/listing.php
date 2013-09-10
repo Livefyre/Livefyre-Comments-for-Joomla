@@ -25,7 +25,7 @@ if (!isset($plugin) || !isset($blogid)) {
 }
 
 $itemURL =$siteUrl.'/index.php?option=com_content&view=article&id='.$articleId;
-$livefyre_logger->add('Livefyre: Comment Count on article: Id: ' .$articleId, JLog::DEBUG, 'Livefyre');
+$livefyre_logger->add('Livefyre: Comment Count on article: Id: ' .$articleId);
 
 ?>
 
