@@ -50,7 +50,7 @@ if (class_exists('LF_JWT') != true) {
     include(dirname(__FILE__).'/../includes/livefyre/JWT.php');
 }
 
-$livefyre_logger->add('Livefyre: Outputing on article: Id: ' .$articleId. ' Title: ' .$articleTitle. ' URL: ' .$article_url, JLog::DEBUG, 'Livefyre');
+$livefyre_logger->add('Livefyre: Outputing on article: Id: ' .$articleId. ' Title: ' .$articleTitle. ' URL: ' .$article_url);
 
 // Create collectionMeta
 $meta = array(

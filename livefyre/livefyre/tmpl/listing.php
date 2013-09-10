@@ -23,6 +23,7 @@ if (!isset($plugin) || !isset($blogid)) {
 		$blogid = $pluginParams->get( 'blogid' );
 	}
 }
+
 ?>
 
 <script type="text/javascript">
