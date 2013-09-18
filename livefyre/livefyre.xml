@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="2.5" type="plugin" group="content">
-	<name>Livefyre Comments 3 (Beta)</name>
+	<name>Livefyre Comments 3</name>
 	<author>Livefyre</author>
 	<creationDate>2/ 2012</creationDate>
-	<copyright>Copyright 2012 Livefyre</copyright>
+	<copyright>Copyright 2013 Livefyre</copyright>
 	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
 	<authorEmail>ben@livefyre.com</authorEmail>
 	<authorUrl>livefyre.com</authorUrl>
