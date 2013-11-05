@@ -23,10 +23,6 @@ if (!isset($plugin) || !isset($blogid)) {
 		$blogid = $pluginParams->get( 'blogid' );
 	}
 }
-
-$itemURL =$siteUrl.'/index.php?option=com_content&view=article&id='.$articleId;
-$livefyre_logger->add('Livefyre: Comment Count on article: Id: ' .$articleId);
-
 ?>
 
 <script type="text/javascript">
@@ -35,5 +31,56 @@ if (typeof(document.getElementById('ncomments_js')) == 'undefined' || document.g
 }
 </script>
 
+<?php 
+
+if($view == 'category' &&  $layout == 'blog') {
+	$query = $db->getQuery(true);
+	$query->select("*");
+	$query->from("#__content");
+	$query->where("catid = '".$_REQUEST['id']."'");
+	try {
+		$db->setQuery($query);
+	}
+	catch (JDatabaseException $e) {
+		if ($use_log) {
+		    JLog::add('Livefyre: Database error in listing.php', JLog::DEBUG, 'Livefyre');
+		}
+	}
+				
+	$data = $db->loadObject();
+	$itemURL =$siteUrl.'/index.php?option=com_content&view=article&id='.$data->id;
+		
+?>
+
 <!-- livefyre comments counter and anchor link -->
-<a class="livefyre-ncomments" style="display:block; float:right;" href="<?php echo $itemURL; ?>#livefyre_thread" article_id="<?php echo $articleId ?>" title="<?php echo JText::_('no comments'); ?>"><?php echo JText::_('no comments'); ?></a>
+<a class="livefyre-ncomments" style="display:block; float:right;" href="<?php echo $itemURL; ?>#livefyre_thread" article_id="<?php echo $data->id; ?>" title="<?php echo JText::_('no comments'); ?>"><?php echo JText::_('no comments'); ?></a>
+
+<?php
+}
+else if($_REQUEST['view'] == 'featured') {
+	// everything approved
+	$query = $db->getQuery(true);
+	$query->select("*");
+	$query->from("#__content");
+	$query->where("featured = '1' and introtext = '".$row->text."'");
+	try {
+		$db->setQuery($query);
+	}
+	catch (JDatabaseException $e) {
+		if ($use_log) {
+		    JLog::add('Livefyre: Database error in listing.php', JLog::DEBUG, 'Livefyre');
+		}
+	}
+
+	$data= $db->loadObject();
+	$itemURL = $siteUrl.'/index.php?option=com_content&view=article&id='.$data->id;
+	if($data->id){
+?>
+	<a class="livefyre-ncomments" style="display:block; float:right;" href="<?php echo $itemURL; ?>#livefyre_thread" article_id="<?php echo $data->id; ?>" title="<?php echo JText::_('no comments'); ?>"><?php echo JText::_('no comments'); ?></a>
+<?php
+	}
+}
+
+$livefyre_logger->add('Livefyre: Comment Count on article: Id: ' .$articleId);
+
+?>

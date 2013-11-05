@@ -15,7 +15,7 @@
 	<config >
 		<fields name="params">
 			<fieldset name="basic">
-				<field name="lf_beta" type="spacer" label='&lt;strong&gt;Livefyre Comments for Joomla (Beta)&lt;/strong&gt;' />
+				<field name="lf_beta" type="spacer" label='&lt;strong&gt;Livefyre Comments for Joomla&lt;/strong&gt;' />
 				<field name="lf_link" type="spacer" label='If your blog has not been registered, please head &lt;a href="http://www.livefyre.com/install/"&gt;here&lt;/a&gt; to receive your Site ID and Key.' />
 				<field name="@spacer" type="spacer" default="" label="" description="" />
 				<field name="blogid" id="blogid" type="text" default="" label="Livefyre Site Id:" description="ID for the site that this is being installed on." required="true" />
