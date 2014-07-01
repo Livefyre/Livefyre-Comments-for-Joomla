@@ -191,7 +191,7 @@ class plgContentlivefyre extends JPlugin {
 
 		// ----------------------------------- Render the output -----------------------------------
 
-		if (in_array($currectCategory, $categories) || $view == 'featured' || $view == 'category') {
+		if (in_array($currectCategory, $categories) || $view == 'featured') {
 			if ($option == 'com_content' && $view == 'article') {
 
 				// Fetch the template
@@ -210,7 +210,7 @@ class plgContentlivefyre extends JPlugin {
 				
 			}
 			else if ($option == 'com_content' && ($view == 'featured'  || $view == 'category')) {
-
+				
 				// Fetch the template
 				ob_start();
 				$dsqArticlePath = JWlivefyreHelper::getTemplatePath($plg_name,'article.php');

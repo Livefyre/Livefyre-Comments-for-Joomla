@@ -9,14 +9,16 @@
 class LivefyreLogger {
     
     private static $instance;
+    private static $log_flag;
 
     private function __construct() {
 
         if (version_compare( JVERSION, '1.7', '>=' ) == 1) {
             jimport('joomla.log.log');
             // Initialise a basic logger with no options (once only).
-            JLog::addLogger(array('text_file' => 'livefyre_log.php'));
-            JLog::add("Creating a logger", JLog::DEBUG, 'Livefyre');
+            JLog::addLogger(array());
+            JLog::add("Creating a logger");
+            self::$log_flag = true;
         }
     }
 
@@ -31,7 +33,7 @@ class LivefyreLogger {
 
     function add($message) {
 
-        if (JDEBUG) {
+        if (JDEBUG && self::$log_flag) {
             JLog::add($message, JLog::DEBUG, 'Livefyre');
         }
     }
