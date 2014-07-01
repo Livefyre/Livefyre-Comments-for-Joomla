@@ -26,8 +26,8 @@ if (!isset($plugin) || !isset($blogid)) {
 ?>
 
 <script type="text/javascript">
-if (typeof(document.getElementById('ncomments_js')) == 'undefined' || document.getElementById('ncomments_js') == null) {
-	document.write('<scr'+'ipt type="text/javascript" id="ncomments_js" src="http://livefyre.com/javascripts/ncomments.js#bn=<?php echo $blogid; ?>"></scr'+'ipt>');
+if (typeof(document.getElementById('comment_count_js')) == 'undefined' || document.getElementById('comment_count_js') == null) {
+	document.write('<script type="text/javascript" src="http://zor.livefyre.com/wjs/v1.0/javascripts/CommentCount.js"></script>');
 }
 </script>
 
@@ -49,13 +49,14 @@ if($view == 'category' &&  $layout == 'blog') {
 				
 	$data = $db->loadObject();
 	$itemURL =$siteUrl.'/index.php?option=com_content&view=article&id='.$data->id;
-		
-?>
+	
+	echo '<!-- livefyre comments counter and anchor link -->' +
+		'<span class="livefyre-commentcount" data-lf-site-id="' . $blogid . '" data-lf-article-id="{article_id}">
+		0 Comments
+		</span>
+		<a class="livefyre-ncomments" style="display:block; float:right;" href="<?php echo $itemURL; ?>#livefyre_thread" article_id="<?php echo $data->id; ?>" title="<?php echo JText::_('0 Comments'); ?>"><?php echo JText::_('0 Comments'); ?></a>
+	';
 
-<!-- livefyre comments counter and anchor link -->
-<a class="livefyre-ncomments" style="display:block; float:right;" href="<?php echo $itemURL; ?>#livefyre_thread" article_id="<?php echo $data->id; ?>" title="<?php echo JText::_('no comments'); ?>"><?php echo JText::_('no comments'); ?></a>
-
-<?php
 }
 else if($_REQUEST['view'] == 'featured') {
 	// everything approved
@@ -75,7 +76,7 @@ else if($_REQUEST['view'] == 'featured') {
 	$data= $db->loadObject();
 	$itemURL = $siteUrl.'/index.php?option=com_content&view=article&id='.$data->id;
 	if($data->id){
-?>
+
 	<a class="livefyre-ncomments" style="display:block; float:right;" href="<?php echo $itemURL; ?>#livefyre_thread" article_id="<?php echo $data->id; ?>" title="<?php echo JText::_('no comments'); ?>"><?php echo JText::_('no comments'); ?></a>
 <?php
 	}
