@@ -1,56 +1,56 @@
 <?php
-
-
-
 /*
-
-
-
-//* overlay   plugin 1.0
-* Joomla plugin
-* by Purple Cow Websites
+* Joomla Plugin
+* Plugin Version: 1.0
+* by Livefyre Inc
 * @copyright Copyright (C) 2010 * Livefyre All rights reserved.
-//*////////////
+*/
 
-
-
-// no direct access
 defined('_JEXEC') or die('Restricted access');
+
+require_once(JPATH_SITE.'/plugins/content/livefyre/livefyre/includes/logger.php');
+$livefyre_logger = LivefyreLogger::getInstance();
+
 echo $row->text;
 ?>
 
 <script type="text/javascript" src="http://zor.livefyre.com/wjs/v3.0/javascripts/livefyre.js"></script> 
 
 <div id="lfcomments">
-<?php
-// Get Bootstrap HTML
-$article_id_b64 = base64_encode($articleId);
-$url = "http://data.bootstrap.fyre.co/$lf_domain/$blogid/$article_id_b64/bootstrap.html";
+    <?php
 
-// Request it
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt ($ch, CURLOPT_POST, 0);
-curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_ENCODING, "gzip");
-$raw_resp=curl_exec($ch);
-$http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-// Don't insert if the collection doesn't exist yet
-if ($http_status == '200') {
-    echo $raw_resp; 
-}
-curl_close ($ch);
+    // Get Bootstrap HTML
+    $article_id_b64 = base64_encode($articleId);
+    $url = "http://data.bootstrap.fyre.co/$lf_domain/$blogid/$article_id_b64/bootstrap.html";
+
+    // Request it
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt ($ch, CURLOPT_POST, 0);
+    curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_ENCODING, "gzip");
+    $raw_resp=curl_exec($ch);
+    $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    // Don't insert if the collection doesn't exist yet
+    if ($http_status == '200') {
+        echo $raw_resp; 
+    }
+    curl_close ($ch);
+
 ?>
 </div>
 
 <script type="text/javascript">
 <?php
+
 $article_url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
 // Include JWT
 if (class_exists('LF_JWT') != true) {
     include(dirname(__FILE__).'/../includes/livefyre/JWT.php');
 }
+
+$livefyre_logger->add('Livefyre: Outputing on article: Id: ' .$articleId. ' Title: ' .$articleTitle. ' URL: ' .$article_url);
 
 // Create collectionMeta
 $meta = array(
@@ -59,8 +59,9 @@ $meta = array(
     "url" => $article_url
 );
 $collectionMeta = LF_JWT::encode($meta, $site_key);
+
 ?>
-//alert('<?php echo $url; ?>');
+
 fyre.conv.load({
     network: '<?php echo $lf_domain; ?>'
 }, [{
@@ -68,7 +69,7 @@ fyre.conv.load({
     siteId: '<?php echo $blogid; ?>',
     articleId: '<?php echo $articleId; ?>',
     collectionMeta: '<?php echo $collectionMeta; ?>'
-}], function(comments) {
+    }], function(comments) {
 
 });
 </script>
